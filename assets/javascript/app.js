@@ -1,6 +1,6 @@
 //APP.JS - Trivia Game. 
 // Core loop Algorythithms 
-// After Start  set controlling loops 
+// After Start set controlling loops 
 
 $(document).ready(function() {
 
@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 	var rightAns=0;
 	var wrongAns=0;
-	var timedAns=0;
+	var timedOutAns=0;
 
 // Load questions objects to array. Assign random order
 // to correct answers in 
@@ -39,8 +39,8 @@ $(document).ready(function() {
  						// Increment counters 
  						// Call Ancilliary functions
             		} // Time controlled loop 
-            	// Assumed time-up end to loop at this point - Print the 
-            	// print the correct answer.
+            	// Assumed time-up end to loop at this point - 
+            	// print the correct answer, Pause, return.
 
 
 				}// Question controlled Loop 
