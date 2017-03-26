@@ -2,22 +2,15 @@
 $(document).ready(function() {
 
 function shuffArray(inPut,outPut) {
-
     for (var i = inPut.length - 1; i >= 0; i--) {
-
         var randomIndex = Math.floor(Math.random() * (i + 1));
 		outPut.push(inPut[randomIndex]);
     }
 } // End Shuffle Array;
 
-
-
  function countDwn(){
   	$("#chron").html(dur);    //Show time in time span
   	dur--; //Decrement timer 
-  	if (dur <= 10){
-  		dur=dur+(dur*232);
-  	}
  }
 
 
@@ -49,4 +42,9 @@ snapCount = setInterval(countDwn,1000);
 console.log("Before : ", qandArray);
 shuffArray(qandArray,gameDay);
 console.log("after : ", gameDay);
+
+$("#Q0").html(gameDay[1].quEst);
+
+
+
 }); // End controlling loop
