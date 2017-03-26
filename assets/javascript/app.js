@@ -30,7 +30,7 @@ var qandArray = [
                 playGame = true;
             }
 
-    while (playGame) {
+    // while (playGame) {
 
         var theAns=[];                                                  // Create current Answer Array 
         shuffArray(gameTime[qIndex].quAns,theAns);                      // Randomize the answer order and shuffle answers into the "Current Answers".    
@@ -60,11 +60,7 @@ var qandArray = [
 
                 var snapCount = setInterval(countDwn,1000); // decrement and display the timer 
                     
-        } // Boolean controlled loop 
-
-
-
-
+        // } // Boolean controlled loop 
 
 function shuffArray(inPut,outPut) {
 // Shuffle an array randomly to another.
