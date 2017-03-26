@@ -8,9 +8,8 @@ var qandArray = [
             {quEst:"Which of these was the longest serving astronaut?",corAns:"John Young", quAns:["John Glenn", "John Young", "Gordy Cooper","Neil Armstrong"]},
             {quEst:"Which branch of the Military did John Glenn serve in?",corAns:"Marines", quAns:["Marines", "Air Force", "Navy","Army Air Corps"]},
             {quEst:"in which state is the Johnson Space Center?",corAns:"Texas", quAns:["Texas", "Alabama", "Massachusets","California"]},
-            {quEst:"Who commanded the last shuttle mission?",corAns:"John Young", quAns:["Eugene Cernan", "Neil Armstrong", "Buzz Aldrin","John Young"]}                    
+            {quEst:"Who commanded the first Space Shuttle mission?",corAns:"John Young", quAns:["Eugene Cernan", "Neil Armstrong", "Buzz Aldrin","John Young"]}                    
             ];
-
 
    // Trivia Questions and Answers
 
@@ -19,38 +18,42 @@ var qandArray = [
     var totRightAns = 0;              // Total # of right answers 
     var totWrongAns = 0;              // Total # of wrong anwers 
     var timedOutAns = 0;              // Total Timed Out answers 
-    var gameTime    = [];             // Game object array
-    shuffArray(qandArray,gameTime);   // Shuffle the storage array into the game-time array
+    var gamePlay    = [];             // Game object array
+    shuffArray(qandArray,gamePlay);   // Shuffle the storage array into the game-time array
     var playGame    = false;
 
-// Execution begins
 
-    if (confirm("Do you want to Play Trivia?") === true) {
+// Execution begins
+if (confirm("Do you want to Play Trivia?") === true) {
                 playGame = true;
             }
 
-    // while (playGame) {
+ while (playGame===true) {
 
-        var qIndex = 0;                                                 // Current question index 
-        var theAns=[];                                                  // Create current Answer Array 
-        shuffArray(gameTime[qIndex].quAns,theAns);                      // Randomize the answer order and shuffle answers into the "Current Answers".    
-        var timeUp = false;                                             // Init Time's-up Boolean Variable 
-        var dur = 20;                                                   // Initialize Timer to 20 seconds.
+     var timeUp = false;
+
+        while (timeUp === false) { 
+
+        var qIndex = 0;                                                 // Current question index                                         // Init Time's-up Boolean Variable 
+        var dur = 20000;                                                   // Initialize Timer to 20 seconds.
         $("#Q0").empty();                                               // Clear the question display
-        $("#Q0").html(gameTime[qIndex].quEst);                          // Display the question 
+        $("#Q0").html(gamePlay[qIndex].quEst);                          // Display the question 
 
-                for (i = 0; i <=3; i++) {
-                        var ansBtn = $("<button>");        // Create the button                                  
-                        var ansBtnName = "#A" + i;        // Create the name
-                        $(ansBtnName).empty;             // Clear out the element   
-                        ansBtn.text(theAns[i]);         //
-                    $(ansBtnName).prepend(ansBtn); // Insert the button in the div.     
+            for (i = 0; i <=3; i++) {
+                    var ansBtn = $("<button>");                             // Create the button                                  
+                    var ansBtnName = "#A" + i;                              // Create the name
+                    $(ansBtnName).empty;                                    // Clear out the element   
+                    ansBtn.text(gamePlay[qIndex].quAns[i]);                 // Assign the text of the question to the button 
+                    $(ansBtnName).prepend(ansBtn);                          // Insert the button in the div.     
+            }                                                           // End Button creation and stylization loop
 
-                    } // End Button creation and stylization loop
+        var snapCount = setInterval(countDwn,1000);              // decrement and display the timer 
 
-                var snapCount = setInterval(countDwn,1000); // decrement and display the timer 
-                    
-        // } // Boolean controlled loop 
+        // Accept the button input here
+
+    } // Time controlled loop 
+
+} // Boolean controlled loop 
 
 function shuffArray(inPut,outPut) {
 // Shuffle an array randomly to another.
