@@ -20,9 +20,8 @@ var qandArray = [
     var totWrongAns = 0;              // Total # of wrong anwers 
     var timedOutAns = 0;              // Total Timed Out answers 
     var gameTime    = [];             // Game object array
-    var qIndex      = 0;              // Current question index 
-    var cAnswer     = 0;              //  Index of the current correct answer
     shuffArray(qandArray,gameTime);   // Shuffle the storage array into the game-time array
+    var playGame    = false;
 
 // Execution begins
 
@@ -32,28 +31,19 @@ var qandArray = [
 
     // while (playGame) {
 
+        var qIndex = 0;                                                 // Current question index 
         var theAns=[];                                                  // Create current Answer Array 
         shuffArray(gameTime[qIndex].quAns,theAns);                      // Randomize the answer order and shuffle answers into the "Current Answers".    
         var timeUp = false;                                             // Init Time's-up Boolean Variable 
         var dur = 20;                                                   // Initialize Timer to 20 seconds.
-                                                                        // Create and Format Q and A's for Display 
         $("#Q0").empty();                                               // Clear the question display
         $("#Q0").html(gameTime[qIndex].quEst);                          // Display the question 
 
                 for (i = 0; i <=3; i++) {
-
-                    var ansBtn = $("<button>");        // Create the button                                  
-                    var ansBtnName = "#A" + i;        // Create the name
-                    $(ansBtnName).empty;             // Clear out the element   
-                        ansBtn.text(theAns[i]);         // 
-
-                        if (i = cAnswer) {
-                            ansBtn.attr("corRect", "y"); // Correct answer based on flag in data
-                                        }
-                        else {
-                            ansBtn.attr("corRect", "n"); // all others incorrect 
-                            }
-
+                        var ansBtn = $("<button>");        // Create the button                                  
+                        var ansBtnName = "#A" + i;        // Create the name
+                        $(ansBtnName).empty;             // Clear out the element   
+                        ansBtn.text(theAns[i]);         //
                     $(ansBtnName).prepend(ansBtn); // Insert the button in the div.     
 
                     } // End Button creation and stylization loop

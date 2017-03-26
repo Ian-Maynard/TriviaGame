@@ -13,7 +13,6 @@ function shuffArray(inPut,outPut) {
   	dur--; //Decrement timer 
  }
 
-
  var qandArray = [
 
             {quEst:"Who was the first man in space?", quAns:["John Glenn", "*Yuri Gagarin", "Gus Grissom","Alexei Leonov"]},
