@@ -18,57 +18,62 @@ var qandArray = [
     var totRightAns = 0;              // Total # of right answers 
     var totWrongAns = 0;              // Total # of wrong anwers 
     var timedOutAns = 0;              // Total Timed Out answers 
-    var gamePlay    = [];             // Game object array
-    shuffArray(qandArray,gamePlay);   // Shuffle the storage array into the game-time array
+    var qDisplay    = [];             // Game object array
+    shuffArray(qandArray,qDisplay);   // Shuffle the storage array into the game-time array
     var playGame    = false;
 
 
+
+
 // Execution begins
-if (confirm("Do you want to Play Trivia?") === true) {
+        if (confirm("Do you want to Play Trivia?") == true) {
                 playGame = true;
             }
 
- while (playGame===true) {
+        // while (playGame==true) {
 
-     var timeUp = false;
-
-        while (timeUp === false) { 
-
-        var qIndex = 0;                                                 // Current question index                                         // Init Time's-up Boolean Variable 
-        var dur = 20000;                                                   // Initialize Timer to 20 seconds.
-        $("#Q0").empty();                                               // Clear the question display
-        $("#Q0").html(gamePlay[qIndex].quEst);                          // Display the question 
+            var timeUp = false;
+            var qIndex = 0;                                                 // Current question index                                         // Init Time's-up Boolean Variable 
+            var dur = 20;    
+                                                           // Initialize Timer to 20 seconds.
+            $("#Q0").empty();                                               // Clear the question display
+            $("#Q0").html(qDisplay[qIndex].quEst);                          // Display the question 
 
             for (i = 0; i <=3; i++) {
-                    var ansBtn = $("<button>");                             // Create the button                                  
-                    var ansBtnName = "#A" + i;                              // Create the name
-                    $(ansBtnName).empty;                                    // Clear out the element   
-                    ansBtn.text(gamePlay[qIndex].quAns[i]);                 // Assign the text of the question to the button 
-                    $(ansBtnName).prepend(ansBtn);                          // Insert the button in the div.     
-            }                                                           // End Button creation and stylization loop
+                        var ansBtn = $("<button>");                             // Create the button                                  
+                        var ansBtnName = "#A" + i;                              // Create the name
+                        $(ansBtnName).empty;                                    // Clear out the element   
+                        ansBtn.text(qDisplay[qIndex].quAns[i]);                 // Assign the text of the question to the button 
+                        $(ansBtnName).prepend(ansBtn);                          // Insert the button in the div.     
+                }                                                           // End Button creation and stylization loop
 
-        var snapCount = setInterval(countDwn,1000);              // decrement and display the timer 
+    //     while (timeUp == false) { 
+ var snapCount = setInterval(countDwn,1000);              // decrement and display the timer 
 
-        // Accept the button input here
+    //     // Accept the button input here
 
-    } // Time controlled loop 
+    // } // Time controlled loop 
 
-} // Boolean controlled loop 
+// } // Boolean controlled loop 
 
-function shuffArray(inPut,outPut) {
-// Shuffle an array randomly to another.
-    for (var i = inPut.length - 1; i >= 0; i--) {
-        var randomIndex = Math.floor(Math.random() * (i + 1));
-        outPut.push(inPut[randomIndex]);
-    }
-} // End Shuffle Array;
+ function shuffArray(inPut,outPut) {
+    // Shuffle an array randomly to another.
+        for (var i = inPut.length - 1; i >= 0; i--) {
+            var randomIndex = Math.floor(Math.random() * (i + 1));
+            outPut.push(inPut[randomIndex]);
+        }
+    } // End Shuffle Array;
+    
+     function countDwn(){
+        if (dur==0){
+            timeUp=true;
+        }
+         else {   
+                $("#chron").empty();
+                $("#chron").html(dur+" seconds remain.");    //Show time in time span
+                dur--; //Decrement timer 
+                }
 
- function countDwn(){
-    $("#chron").html(dur);    //Show time in time span
-    dur--; //Decrement timer 
-    if (dur=0){
-        timeUp = true;
-            }
     }
 
  }); // End function wrapper
