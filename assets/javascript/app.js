@@ -56,11 +56,8 @@ function screenDraw(x){
          ansBtn.text(qDisplay[x].quAns[i]);         // Assign the text of the question to the button 
          ansBtn.addClass("ansWer");                 // Assign a single class to all buttons                   
         $(ansBtnName).append(ansBtn);               // Insert the button in the div.     
-
         }                                                           // End Button creation and stylization loop  
 }
-
-
 
 // Execution begins
 
@@ -68,22 +65,25 @@ function screenDraw(x){
 
         for (h=0; h <= numberOfQ-1; h++) {
             currentQuestion=qDisplay[h].quEst;
-            currentAnswer=qDisplay[h].corAns;
+            currentAnswer=qDisplay[h].corAns;  
+
             screenDraw(h); // Display questions and build buttons
-            timeUp = 0;          
-            dur = 20;                           
-             
-                                                           // Init Time's-up Boolean Variable
+            
+            timeUp = 0;          // When 
+            dur = 20;            // set the duration of the timer              
             var snapCount = setInterval(countDwn,2000);                  // decrement and display the timer 
                
         $(".ansWer").on("click", function() {
 
-        if (($(this).text) == currentAnswer) {
-
-        }
-
-
-        
+            if (($(this).text) == currentAnswer) {
+                totRightAns++;
+                alert(($(this).text+" is the CORRECT ANSWER!!"));
+                } 
+            else {
+                totWrongAns++;
+                alert(($(this).text+" is the INCORRECT ANSWER!!"));
+            }
+            
 
       });
 
