@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
 var qandArray = [
             {quEst:"Who was the first man in space?",corAns:"Yuri Gagarin",quAns:["John Glenn", "Yuri Gagarin", "Gus Grissom","Alexei Leonov"]},
@@ -14,66 +14,84 @@ var qandArray = [
    // Trivia Questions and Answers
 
     //Game variable setup   
-
+    var numberOfQ   = qandArray.length;
     var totRightAns = 0;              // Total # of right answers 
     var totWrongAns = 0;              // Total # of wrong anwers 
     var timedOutAns = 0;              // Total Timed Out answers 
     var qDisplay    = [];             // Game object array
     shuffArray(qandArray,qDisplay);   // Shuffle the storage array into the game-time array
-    var playGame    = false;
+    var qIndex = 0;                   // Start at the top of the array
+    var dur = 20;
+    timeUp  = 0;
 
-
-
-
-// Execution begins
-        if (confirm("Do you want to Play Trivia?") == true) {
-                playGame = true;
-            }
-
-        // while (playGame==true) {
-
-            var timeUp = false;
-            var qIndex = 0;                                                 // Current question index                                         // Init Time's-up Boolean Variable 
-            var dur = 20;    
-                                                           // Initialize Timer to 20 seconds.
-            $("#Q0").empty();                                               // Clear the question display
-            $("#Q0").html(qDisplay[qIndex].quEst);                          // Display the question 
-
-            for (i = 0; i <=3; i++) {
-                        var ansBtn = $("<button>");                             // Create the button                                  
-                        var ansBtnName = "#A" + i;                              // Create the name
-                        $(ansBtnName).empty;                                    // Clear out the element   
-                        ansBtn.text(qDisplay[qIndex].quAns[i]);                 // Assign the text of the question to the button 
-                        $(ansBtnName).prepend(ansBtn);                          // Insert the button in the div.     
-                }                                                           // End Button creation and stylization loop
-
-    //     while (timeUp == false) { 
- var snapCount = setInterval(countDwn,1000);              // decrement and display the timer 
-
-    //     // Accept the button input here
-
-    // } // Time controlled loop 
-
-// } // Boolean controlled loop 
-
- function shuffArray(inPut,outPut) {
+function shuffArray(inPut,outPut) {
     // Shuffle an array randomly to another.
         for (var i = inPut.length - 1; i >= 0; i--) {
             var randomIndex = Math.floor(Math.random() * (i + 1));
             outPut.push(inPut[randomIndex]);
         }
-    } // End Shuffle Array;
-    
-     function countDwn(){
+ } // End Shuffle Array;
+ 
+
+function countDwn(){
         if (dur==0){
-            timeUp=true;
+           timeUp=1;
+           clearInterval(snapCount);
         }
          else {   
+                dur--; //Decrement timer 
                 $("#chron").empty();
                 $("#chron").html(dur+" seconds remain.");    //Show time in time span
-                dur--; //Decrement timer 
                 }
+} // Count Down
 
-    }
 
- }); // End function wrapper
+function screenDraw(x){
+    $("#Q0").empty();                                           // Clear the question display
+    $("#Q0").html(qDisplay[x].quEst);                          // Display the question 
+    for (i=0; i <=3; i++) {
+         var ansBtn = $("<button>");                // Create the button                                  
+         var ansBtnName = "#A" + i;                 // Create the name
+         $(ansBtnName).empty();                     // Clear out the element   
+         ansBtn.text(qDisplay[x].quAns[i]);         // Assign the text of the question to the button 
+         ansBtn.addClass("ansWer");                 // Assign a single class to all buttons                   
+        $(ansBtnName).append(ansBtn);               // Insert the button in the div.     
+
+        }                                                           // End Button creation and stylization loop  
+}
+
+
+
+// Execution begins
+
+    if (confirm("Do you want to Play Trivia?") == true) {
+
+        for (h=0; h <= numberOfQ-1; h++) {
+            currentQuestion=qDisplay[h].quEst;
+            currentAnswer=qDisplay[h].corAns;
+            screenDraw(h); // Display questions and build buttons
+            timeUp = 0;          
+            dur = 20;                           
+             
+                                                           // Init Time's-up Boolean Variable
+            var snapCount = setInterval(countDwn,2000);                  // decrement and display the timer 
+               
+        $(".ansWer").on("click", function() {
+
+        if (($(this).text) == currentAnswer) {
+
+        }
+
+
+        
+
+      });
+
+
+
+                                                                                 // Accept the button input here
+    } // Length of array loop 
+
+} // Boolean controlled loop Controlled by Play? Yes
+
+}); // End function wrapper
