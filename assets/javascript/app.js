@@ -35,11 +35,11 @@ function shuffArray(inPut,outPut) {
 
 function countDwn(){
         if (dur==0){
-           timeUp=1;
+           timeUp=1; dur=20;
            clearInterval(snapCount);
         }
          else {   
-                dur--; //Decrement timer 
+                dur--; // Decrement timer 
                 $("#chron").empty();
                 $("#chron").html(dur+" seconds remain.");    //Show time in time span
                 }
@@ -60,36 +60,36 @@ function screenDraw(x){
 }
 
 // Execution begins
-
+    
     if (confirm("Do you want to Play Trivia?") == true) {
+        var dur = 20;
+        var timeup = 0;
 
         for (h=0; h <= numberOfQ-1; h++) {
+
             currentQuestion=qDisplay[h].quEst;
             currentAnswer=qDisplay[h].corAns;  
-
             screenDraw(h); // Display questions and build buttons
-            
-            timeUp = 0;          // When 
-            dur = 20;            // set the duration of the timer              
-            var snapCount = setInterval(countDwn,2000);                  // decrement and display the timer 
+           
+
+            // qIndex++;
+            // set the duration of the timer              
+            var snapCount = setInterval(countDwn(dur),1000);                  // decrement and display the timer 
                
-        $(".ansWer").on("click", function() {
+            $(".ansWer").on("click", function() {
 
-            if (($(this).text) == currentAnswer) {
-                totRightAns++;
-                alert(($(this).text+" is the CORRECT ANSWER!!"));
-                } 
-            else {
-                totWrongAns++;
-                alert(($(this).text+" is the INCORRECT ANSWER!!"));
-            }
-            
+                if (($(this).text) == currentAnswer) {
+                    totRightAns++;
+                    alert(($(this).text+" is the CORRECT ANSWER!!"));
+                    } 
+                else {
+                    totWrongAns++;
+                    alert(($(this).text+" is the INCORRECT ANSWER!!"));
+                    }
+            });
 
-      });
-
-
-
-                                                                                 // Accept the button input here
+        
+                            
     } // Length of array loop 
 
 } // Boolean controlled loop Controlled by Play? Yes
